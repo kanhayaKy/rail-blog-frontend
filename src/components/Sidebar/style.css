@@ -1,0 +1,29 @@
+li {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 0 5px 5px;
+  border-radius: 7px;
+}
+
+li:hover {
+  color: #7451f8;
+}
+
+.sidebar {
+  position: fixed;
+}
+
+.menu {
+  margin-bottom: 50px;
+}
+
+.menu h4 {
+  margin-bottom: 15px;
+}
+
+.selected {
+  background-color: rgba(116, 81, 248, 0.42);
+}
