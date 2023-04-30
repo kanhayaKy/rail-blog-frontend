@@ -17,7 +17,7 @@
 }
 
 .post-image img {
-  width: inherit;
+  width: 100%;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   height: 250px;
@@ -35,9 +35,6 @@
   height: 50px;
 
   border: 1px solid #d3d3d3;
-}
-
-.post-header .author-info {
 }
 
 .post-content {

@@ -5,7 +5,7 @@
 .main {
   padding-top: 50px;
   background-color: #f9f9f9;
-  min-height: calc(100vh - 101px);
+  min-height: 90vh;
 }
 
 .main-wrapper {

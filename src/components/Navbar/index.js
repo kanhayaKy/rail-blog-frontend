@@ -1,10 +1,14 @@
+import "./style.css";
+
 const Navbar = () => {
   return (
-    <nav>
+    <nav className="navbar">
       <ul>
-        <li>Home</li>
+        <li className="nav-item brand">Network</li>
 
-        <li>Login</li>
+        <li className="nav-item">Home</li>
+
+        <li className="nav-item">Login</li>
       </ul>
     </nav>
   );
