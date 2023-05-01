@@ -12,10 +12,14 @@ const Post = ({ data }) => {
       )}
       <div className="post-body">
         <div className="post-header">
-          <img src={data.user.profile_image} alt="author avatar" />
+          <img src={data.author.profile_image} alt="author avatar" />
           <div className="author-info">
-            <p>{data.user.name}</p>
-            <p className="secondary-text">{data.created_data}</p>
+            <p>{data.author.name}</p>
+            <p className="secondary-text">
+              {new Date(data.created_at).toLocaleString("en-us",{
+                datestyle: "medium",
+              })}
+            </p>
           </div>
         </div>
         <div className="post-content">{data.description}</div>
