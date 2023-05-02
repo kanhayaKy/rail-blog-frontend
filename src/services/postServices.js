@@ -1,8 +1,7 @@
 import axios from "axios";
 import config from "./config";
 
-
-const BASE_URL = "localhost:3000/"
+const BASE_URL = "localhost:3000/";
 
 export default class PostService {
   static async createPost(postData) {
@@ -20,4 +19,8 @@ export default class PostService {
   static async likePost(id) {}
 
   static async createComment() {}
+
+  static async getPostById(id) {
+    return axios.get(`http://localhost:3000/api/v1/posts/${id}`, config);
+  }
 }

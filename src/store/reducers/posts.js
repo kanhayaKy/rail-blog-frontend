@@ -12,7 +12,6 @@ export const fetchPosts = createAsyncThunk(
   "posts/fetchPosts",
   async (thunkAPI) => {
     try {
-      console.log("fetching in fetchpost");
       const response = await PostServices.getPosts();
       return response.data;
     } catch (error) {
