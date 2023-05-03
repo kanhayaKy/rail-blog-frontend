@@ -18,7 +18,13 @@ export default class PostService {
 
   static async likePost(id) {}
 
-  static async createComment() {}
+  static async createComment(post_id, comment_data) {
+    return axios.post(
+      `http://localhost:3000/api/v1/posts/${post_id}/comment`,
+      comment_data,
+      config
+    );
+  }
 
   static async getPostById(id) {
     return axios.get(`http://localhost:3000/api/v1/posts/${id}`, config);

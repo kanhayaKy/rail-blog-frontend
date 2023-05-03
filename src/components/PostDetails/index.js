@@ -1,43 +1,44 @@
 import { FavoriteBorder, ChatBubbleOutline } from "@mui/icons-material";
+import "./style.css";
 
-const PostDetails = (data) => {
+const PostDetails = ({ post }) => {
   return (
-    <div>
-      {data.image && (
-        <div className="post-image">
-          <img src={data.image} alt="post preview" />
+    <div className="post-details-container">
+      {post.image && (
+        <div className="post-details-image">
+          <img src={post.image} alt="post preview" />
         </div>
       )}
 
-      <div className="post-header">
-        <img src={data.author.profile_image} alt="author avatar" />
+      <div className="post-details-header">
+        <img src={post?.author?.profile_image} alt="author avatar" />
         <div className="author-info">
-          <p>{data.author.name}</p>
+          <p>{post?.author?.name}</p>
           <p className="secondary-text">
-            {new Date(data.created_at).toLocaleString("en-us", {
+            {new Date(post.created_at).toLocaleString("en-us", {
               datestyle: "medium",
             })}
           </p>
         </div>
       </div>
 
-      <div className="post-title">
-        <h2>{data.title}</h2>
+      <div className="post-details-title">
+        <h1>{post.title} Hello world titile</h1>
       </div>
 
-      <div className="post-body">
-        <h2>{data.description}</h2>
+      <div className="post-details-body">
+        <p>{post.description}</p>
       </div>
 
-      <div className="post-footer">
-        <div className="post-reaction">
+      <div className="post-details-footer">
+        <div className="post-details-reaction">
           <FavoriteBorder className="icon" />
-          <span>Likes</span>
+          <span>{post?.likes || 0 } Likes</span>
         </div>
 
-        <div className="post-reaction">
+        <div className="post-details-reaction">
           <ChatBubbleOutline className="icon" />
-          <span>Comments</span>
+          <span>{post?.comments?.length || 0} Comments</span>
         </div>
       </div>
     </div>

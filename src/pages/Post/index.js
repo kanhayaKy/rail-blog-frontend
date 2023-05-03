@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import Comment from "../../components/Comment";
+import CommentList from "../../components/CommentList";
 import PostDetails from "../../components/PostDetails";
 import PostService from "../../services/postServices";
+import { getPostById, setCurrentPost } from "../../store/reducers/posts";
+
+import "./style.css";
 
 const Post = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const [post, setPost] = useState(null);
-  const { posts } = useSelector((state) => state.post);
+  const dispatch = useDispatch();
+
+  const { posts, current_post } = useSelector((state) => state.posts);
 
   useEffect(() => {
+    if (current_post && current_post.id === id) {
+      return;
+    }
+
     const index = posts.findIndex((post) => post.id === id);
     if (index !== -1) {
-      setPost(posts[index]);
+      dispatch(setCurrentPost(posts[index]));
     } else {
-      try {
-        const PostDetails = PostService.getPostById(id);
-      } catch (error) {
-        console.log("Error getting post data");
-      }
+      dispatch(getPostById(id));
     }
-  }, [posts, id]);
+  }, []);
 
   return (
     <div>
-      <PostDetails />
+      <PostDetails post={current_post} />
+      <CommentList comments={current_post?.comments} />
     </div>
   );
 };

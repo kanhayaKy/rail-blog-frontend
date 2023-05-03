@@ -1,10 +1,17 @@
 import { FavoriteBorder, ChatBubbleOutline } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 import "./style.css";
 
 const Post = ({ data }) => {
+  const navigate = useNavigate();
+
+  const handlePostClick = () => {
+    navigate(`/posts/${data.id}`);
+  };
+
   return (
-    <div className="post-container">
+    <div onClick={handlePostClick} className="post-container">
       {data.image && (
         <div className="post-image">
           <img src={data.image} alt="post preview" />
@@ -16,7 +23,7 @@ const Post = ({ data }) => {
           <div className="author-info">
             <p>{data.author.name}</p>
             <p className="secondary-text">
-              {new Date(data.created_at).toLocaleString("en-us",{
+              {new Date(data.created_at).toLocaleString("en-us", {
                 datestyle: "medium",
               })}
             </p>

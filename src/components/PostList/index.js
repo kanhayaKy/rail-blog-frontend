@@ -8,7 +8,7 @@ const PostList = ({ posts, error }) => {
       ) : (
         <div className="posts-list">
           {posts.map((post) => (
-            <Post data={post} />
+            <Post key={post.id} data={post} />
           ))}
         </div>
       )}
