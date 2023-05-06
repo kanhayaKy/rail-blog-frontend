@@ -15,6 +15,7 @@ export const authorizeUser = createAsyncThunk(
       let response;
       if (args.type === "register") {
         response = await AuthService.registerUser(args.user);
+        response = await AuthService.loginUser(args.user)
       } else if (args.type === "login") {
         response = await AuthService.loginUser(args.user);
       } else if (args.type === "checkAuth") {

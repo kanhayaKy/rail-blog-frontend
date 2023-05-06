@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 const Navbar = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   return (
     <nav className="navbar">
       <ul>
-        <li className="brand">Network App</li>
+        <li className="brand">LeafyBlog</li>
 
         {isAuthenticated ? (
           <>
-            <Link className="link" to="/">
-              <li className="nav-item">Home</li>
-            </Link>
+            <li className="nav-item user-name">{user.first_name}</li>
 
-            <li className="nav-item">Logout</li>
+            <Link className="link" to="#">
+              <li className="nav-item">Logout</li>
+            </Link>
           </>
         ) : (
           <>

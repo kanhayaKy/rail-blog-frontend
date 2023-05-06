@@ -3,6 +3,7 @@ import Post from "./pages/Post";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Layout from "./components/Layout";
+import Register from "./pages/Register";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

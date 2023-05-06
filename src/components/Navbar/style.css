@@ -24,16 +24,10 @@
 
 .nav-item {
   height: 80%;
-  padding: 5px 20px;
 
   margin: auto 30px;
   margin-right: 0;
 
-  border: 1px solid #808080;
-}
-
-.nav-item:hover{
-  border: 1px solid #7451f8;
 }
 
 .brand {
@@ -42,4 +36,8 @@
   border: none;
   font-size: 1.5rem;
   color: #7451f8;
+}
+
+.user-name {
+  border: none;
 }
