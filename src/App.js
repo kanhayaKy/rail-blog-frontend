@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
+import { ErrorBoundary } from "react-error-boundary";
 
 import routes from "./routes";
 import "./App.css";
@@ -22,11 +22,11 @@ function App() {
   }, [dispatch]);
 
   return (
-    <React.Fragment>
-      <RouterProvider router={router}>
+    <RouterProvider router={router}>
+      <ErrorBoundary FallbackComponent={<div>404</div>}>
         <Layout />
-      </RouterProvider>
-    </React.Fragment>
+      </ErrorBoundary>
+    </RouterProvider>
   );
 }
 

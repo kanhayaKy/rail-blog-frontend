@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import Register from "./pages/Register";
 import CreatePost from "./pages/Post/create";
 import EditPost from "./pages/Post/edit";
+import Auth from "./components/Auth";
 
 const routes = [
   {
@@ -15,14 +16,6 @@ const routes = [
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/posts/create",
-        element: <CreatePost />,
-      },
-      {
-        path: "/posts/:id/edit",
-        element: <EditPost />,
       },
       {
         path: "/posts/:id",
@@ -37,6 +30,26 @@ const routes = [
         element: <Register />,
       },
     ],
+  },
+
+  {
+    path: "/posts",
+    element: <Auth />,
+    children: [
+      {
+        path: "create",
+        element: <CreatePost />,
+      },
+      {
+        path: ":id/edit",
+        element: <EditPost />,
+      },
+    ],
+  },
+
+  {
+    path: "*",
+    element: <div>Page not found</div>,
   },
 ];
 

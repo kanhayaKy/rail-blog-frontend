@@ -15,7 +15,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <ul>
-        <li className="brand">LeafyBlog</li>
+        <Link className="link brand" to="/">
+          <li className="brand">LeafyBlog</li>
+        </Link>
 
         {isAuthenticated ? (
           <>

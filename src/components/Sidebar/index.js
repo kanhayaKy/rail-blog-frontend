@@ -45,10 +45,10 @@ const Sidebar = () => {
       icon: <PersonOutlined />,
       path: "/",
     },
-    Tags: {
-      icon: <LocalOfferOutlined />,
-      path: "/",
-    },
+    // Tags: {
+    //   icon: <LocalOfferOutlined />,
+    //   path: "/",
+    // },
   };
 
   return (
