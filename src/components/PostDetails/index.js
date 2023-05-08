@@ -23,7 +23,7 @@ const PostDetails = ({ post }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const handleDeletePost = async () => {
     setIsLoading(true);
@@ -50,6 +50,10 @@ const PostDetails = ({ post }) => {
 
   const handleLikeClick = async (event) => {
     event.stopPropagation();
+    if (!isAuthenticated) {
+      return;
+    }
+
     try {
       let response;
 
@@ -74,9 +78,9 @@ const PostDetails = ({ post }) => {
           </button>
         </div>
 
-        {isAuthenticated && (
+        {isAuthenticated && user?.username === post?.author?.username && (
           <div className="button-group">
-            <button onClick={() => navigate(`/post/${post.id}/create`)}>
+            <button onClick={() => navigate(`/posts/${post.id}/edit`)}>
               <EditIcon />
               <span>Edit</span>
             </button>

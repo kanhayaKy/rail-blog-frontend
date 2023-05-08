@@ -3,7 +3,7 @@ import {
   ChatBubbleOutline,
   FavoriteOutlined,
 } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PostService from "../../services/postServices";
 import { updatePost } from "../../store/reducers/posts";
@@ -14,12 +14,18 @@ const Post = ({ data }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   const handlePostClick = () => {
     navigate(`/posts/${data.id}`);
   };
 
   const handleLikeClick = async (event) => {
     event.stopPropagation();
+    if (!isAuthenticated) {
+      return;
+    }
+
     try {
       let response;
 

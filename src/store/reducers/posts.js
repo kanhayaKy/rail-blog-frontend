@@ -35,24 +35,6 @@ export const getPostById = createAsyncThunk(
   }
 );
 
-export const createUpdatePost = createAsyncThunk(
-  "posts/createUpdatePost",
-  async (args, thunkAPI) => {
-    try {
-      let response;
-      if (args.type === "create") {
-        response = await PostServices.createPost(args.post);
-      } else if (args.type === "update") {
-        response = await PostServices.updatePost(args.postId, args.post);
-      }
-      return response?.data;
-    } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -118,26 +100,6 @@ const postSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = "Error occured while fetching posts";
-    },
-
-    [createUpdatePost.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [createUpdatePost.fulfilled]: (state, action) => {
-      state.isLoading = false;
-
-      const updatedPost = action.payload;
-      const index = state.posts.findIndex((post) => post.id === updatedPost.id);
-      if (index !== -1) {
-        state.posts[index] = updatedPost;
-      } else {
-        state.posts.push(updatePost);
-      }
-    },
-    [createUpdatePost.rejected]: (state) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.errorMessage = "Error occured while saving posts";
     },
   },
 });
