@@ -1,11 +1,9 @@
 import { CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import Comment from "../../components/Comment";
+import { useParams } from "react-router-dom";
 import CommentList from "../../components/CommentList";
 import PostDetails from "../../components/PostDetails";
-import PostService from "../../services/postServices";
 import { getPostById, setCurrentPost } from "../../store/reducers/posts";
 
 import "./style.css";

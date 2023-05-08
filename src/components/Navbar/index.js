@@ -4,13 +4,13 @@ import { logoutUser } from "../../store/reducers/auth";
 import "./style.css";
 
 const Navbar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
-    dispatch(logoutUser())
-  }
+    dispatch(logoutUser());
+  };
 
   return (
     <nav className="navbar">
@@ -19,10 +19,18 @@ const Navbar = () => {
 
         {isAuthenticated ? (
           <>
-            <li className="nav-item user-name">{user.first_name}</li>
+            <Link className="link" to="/posts/create">
+              <li className="nav-item">Create</li>
+            </Link>
+
+            <Link className="link" to="#">
+              <li className="nav-item user-name">{user.first_name}</li>
+            </Link>
 
             <Link className="link" to="/">
-              <li onClick={handleLogout} className="nav-item">Logout</li>
+              <li onClick={handleLogout} className="nav-item">
+                Logout
+              </li>
             </Link>
           </>
         ) : (

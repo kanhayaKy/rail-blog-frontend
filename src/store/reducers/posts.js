@@ -7,6 +7,7 @@ const initialState = {
   isError: false,
   errorMessage: "",
   current_post: {},
+  filter: "latest",
 };
 
 export const fetchPosts = createAsyncThunk(
@@ -74,6 +75,25 @@ const postSlice = createSlice({
         state.posts[state.current_post.id] = state.current_post;
       }
     },
+
+    sortPosts: (state, action) => {
+      let sorted_posts = state.posts;
+
+      if (action.payload === "latest" && state.filter !== action.payload) {
+        sorted_posts = state.posts.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+      } else if (action.payload === "best" && state.filter !== action.payload) {
+        sorted_posts = state.posts.sort((a, b) => b.likes - a.likes);
+      } else if (action.payload === "hot" && state.filter !== action.payload) {
+        sorted_posts = state.posts.sort(
+          (a, b) => b.comments?.length - a.comments?.length
+        );
+      }
+
+      state.posts = sorted_posts;
+      state.filter = action.payload || state.filter;
+    },
   },
   extraReducers: {
     [fetchPosts.pending]: (state) => {
@@ -81,7 +101,10 @@ const postSlice = createSlice({
     },
     [fetchPosts.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.posts = action.payload;
+      let sorted_posts = action.payload?.sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      );
+      state.posts = sorted_posts;
     },
     [fetchPosts.rejected]: (state) => {
       state.isLoading = false;
@@ -105,5 +128,11 @@ const postSlice = createSlice({
 });
 
 export const postReducer = postSlice.reducer;
-export const { addPost, updatePost, deletePost, setCurrentPost, addComment } =
-  postSlice.actions;
+export const {
+  addPost,
+  updatePost,
+  deletePost,
+  setCurrentPost,
+  addComment,
+  sortPosts,
+} = postSlice.actions;

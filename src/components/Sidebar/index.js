@@ -6,24 +6,32 @@ import {
   PersonOutlined,
   LocalOfferOutlined,
 } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
+import { sortPosts } from "../../store/reducers/posts";
 
 import "./style.css";
 
 const Sidebar = () => {
-  const handleFilterPosts = (category) => {};
+  const dispatch = useDispatch();
+  const { filter } = useSelector((state) => state.posts);
+
+  const handleFilterPosts = (category) => {
+    console.log(category);
+    dispatch(sortPosts(category));
+  };
 
   const postFiltersData = {
-    Latest: {
+    latest: {
       icon: <AccessTimeOutlined />,
     },
 
-    Hot: {
+    hot: {
       icon: <LocalFireDepartmentOutlined />,
     },
 
-    Best: {
+    best: {
       icon: <StarBorderOutlined />,
     },
   };
@@ -48,10 +56,13 @@ const Sidebar = () => {
       <div className="menu">
         <h4>Sort by</h4>
         <ul>
-          {Object.keys(postFiltersData).map((filter) => (
-            <li onClick={() => handleFilterPosts(filter)}>
-              {postFiltersData[filter].icon}
-              <span>{filter}</span>
+          {Object.keys(postFiltersData).map((filterName) => (
+            <li
+              className={`${filter === filterName ? "selected" : ""}`}
+              onClick={() => handleFilterPosts(filterName)}
+            >
+              {postFiltersData[filterName].icon}
+              <span>{filterName}</span>
             </li>
           ))}
         </ul>

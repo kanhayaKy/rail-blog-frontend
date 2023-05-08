@@ -18,12 +18,15 @@ li:hover {
 
 .menu {
   margin-bottom: 50px;
+  text-transform: capitalize;
 }
 
 .menu h4 {
   margin-bottom: 15px;
+  color: #7451f8;
 }
 
 .selected {
   background-color: rgba(116, 81, 248, 0.42);
+  color: #7451f8;
 }
