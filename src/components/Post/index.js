@@ -1,13 +1,37 @@
-import { FavoriteBorder, ChatBubbleOutline } from "@mui/icons-material";
+import {
+  FavoriteBorder,
+  ChatBubbleOutline,
+  FavoriteOutlined,
+} from "@mui/icons-material";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import PostService from "../../services/postServices";
+import { updatePost } from "../../store/reducers/posts";
 
 import "./style.css";
 
 const Post = ({ data }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handlePostClick = () => {
     navigate(`/posts/${data.id}`);
+  };
+
+  const handleLikeClick = async (event) => {
+    event.stopPropagation();
+    try {
+      let response;
+
+      if (!data.liked) {
+        response = await PostService.likePost(data.id);
+      } else {
+        response = await PostService.dislikePost(data.id);
+      }
+      dispatch(updatePost(response?.data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -19,7 +43,10 @@ const Post = ({ data }) => {
       )}
       <div className="post-body">
         <div className="post-header">
-          <img src={data.author.profile_image} alt="author avatar" />
+          <img
+            src={data.author.avatar || "default_profile.png"}
+            alt="author avatar"
+          />
           <div className="author-info">
             <p>{data.author.name}</p>
             <p className="secondary-text">
@@ -29,16 +56,20 @@ const Post = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="post-content">{data.description}</div>
+        <div className="post-content">{data.title}</div>
         <div className="post-footer">
-          <div className="post-reaction">
-            <FavoriteBorder className="icon" />
-            <span>Likes</span>
+          <div className="post-reaction" onClick={handleLikeClick}>
+            {data.liked ? (
+              <FavoriteOutlined className="icon  liked" />
+            ) : (
+              <FavoriteBorder className="icon like" />
+            )}
+            <span>{data.likes} Likes</span>
           </div>
 
           <div className="post-reaction">
             <ChatBubbleOutline className="icon" />
-            <span>Comments</span>
+            <span>{data?.comments?.length} Comments</span>
           </div>
         </div>
       </div>

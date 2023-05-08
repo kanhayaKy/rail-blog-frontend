@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,7 +14,9 @@ const Post = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { posts, current_post } = useSelector((state) => state.posts);
+  const { posts, current_post, isLoading } = useSelector(
+    (state) => state.posts
+  );
 
   useEffect(() => {
     if (current_post && current_post.id === id) {
@@ -30,8 +33,14 @@ const Post = () => {
 
   return (
     <div>
-      <PostDetails post={current_post} />
-      <CommentList comments={current_post?.comments} />
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <PostDetails post={current_post} />
+          <CommentList comments={current_post?.comments} />
+        </>
+      )}
     </div>
   );
 };

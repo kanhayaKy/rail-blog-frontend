@@ -8,11 +8,13 @@ import "./style.css";
 
 const Home = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts());
-  }, [dispatch]);
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div className="home">

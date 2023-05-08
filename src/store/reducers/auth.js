@@ -15,7 +15,7 @@ export const authorizeUser = createAsyncThunk(
       let response;
       if (args.type === "register") {
         response = await AuthService.registerUser(args.user);
-        response = await AuthService.loginUser(args.user)
+        response = await AuthService.loginUser(args.user);
       } else if (args.type === "login") {
         response = await AuthService.loginUser(args.user);
       } else if (args.type === "checkAuth") {
@@ -31,7 +31,18 @@ export const authorizeUser = createAsyncThunk(
   }
 );
 
-export const logoutUser = createAsyncThunk();
+export const logoutUser = createAsyncThunk(
+  "auth/logout",
+  async (thunkAPI) => {
+    let response;
+    try {
+      response = await AuthService.logout();
+      return response.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Logout unsuccessful, Try again");
+    }
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -60,7 +71,7 @@ export const authSlice = createSlice({
       state.error = "";
     },
     [authorizeUser.rejected]: (state, action) => {
-      localStorage.removeItem("token")
+      localStorage.removeItem("token");
       state.error = action.payload;
       state.isLoading = false;
     },

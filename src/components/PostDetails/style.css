@@ -1,13 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&family=Roboto:wght@300;400;700&display=swap");
 
 .post-details-container {
   width: 75%;
-  margin: 50px auto;
+  margin: 10px auto;
   padding: 2rem 4rem;
   background-color: #fff;
 
   box-shadow: 0 4px 8px 0 #d3d3d3;
-  border-radius:10px;
+  border-radius: 10px;
+}
+
+.post-detail-error-container {
+  color: #ff0000;
+  width: 85%;
+  margin: auto;
+}
+
+.post-details-buttons {
+  width: 85%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+}
+
+.button-group button {
+  display: flex;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #7451f8;
+  color: #7451f8;
+}
+
+.button-group button:hover {
+  color: #fff;
+  background-color: #7451f8;
 }
 
 .post-details-header {
@@ -45,7 +80,6 @@
   font-weight: 400;
   line-height: 1.2rem;
   letter-spacing: 0.75px;
-
 }
 
 .post-details-footer {
@@ -64,4 +98,15 @@
 
 .post-details-reaction .icon {
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.post-details-reaction .liked {
+  color: #ff0000;
+}
+
+.post-details-reaction .like:hover {
+  background-color: rgba(255, 0, 0, 0.18);
+  border-radius: 50%;
+  color: #ff0000;
 }

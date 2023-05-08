@@ -40,3 +40,10 @@
 button:hover {
   cursor: pointer;
 }
+
+button:disabled {
+  background-color: #f3f3f3;
+  border: 1px solid #7451f8;
+  color: #7451f8;
+  cursor: not-allowed;
+}

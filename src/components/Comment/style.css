@@ -10,7 +10,7 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #7c7b7b;
+  /* border: 1px solid #7c7b7b; */
 }
 
 .comment-author {
