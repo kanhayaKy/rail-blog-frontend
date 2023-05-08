@@ -1,9 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../../store/reducers/auth";
 import "./style.css";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  }
+
   return (
     <nav className="navbar">
       <ul>
@@ -13,8 +21,8 @@ const Navbar = () => {
           <>
             <li className="nav-item user-name">{user.first_name}</li>
 
-            <Link className="link" to="#">
-              <li className="nav-item">Logout</li>
+            <Link className="link" to="/">
+              <li onClick={handleLogout} className="nav-item">Logout</li>
             </Link>
           </>
         ) : (
