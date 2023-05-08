@@ -10,7 +10,7 @@ const PostList = ({ posts, error }) => {
   return (
     <div>
       {error ? (
-        <div className="posts-error">some error occured</div>
+        <div className="posts-error">{error}</div>
       ) : (
         <div className="posts-list">
           <div
