@@ -9,15 +9,19 @@
   width: 500px;
   background-color: white;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid rgba(211, 211, 211, 0.51);
+  box-shadow: 0 4px 8px 0 #d3d3d3;
 
+  color: #7451f8;
   margin: 40px auto;
 }
 
 .register-title {
   text-align: center;
-  margin: 20px auto
+  margin: 20px auto;
+
+  font-weight: 600;
 }
 
 .register-form .form-field {
@@ -29,7 +33,6 @@
   padding: 7px 5px;
 
   border-radius: 7px;
-  border: 1px solid #6b6a6a;
 }
 
 .form-group {

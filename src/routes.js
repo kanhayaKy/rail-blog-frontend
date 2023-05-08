@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import CreatePost from "./pages/Post/create";
 import EditPost from "./pages/Post/edit";
 import Auth from "./components/Auth";
+import NotFound from "./pages/404";
 
 const routes = [
   {
@@ -49,7 +50,7 @@ const routes = [
 
   {
     path: "*",
-    element: <div>Page not found</div>,
+    element: <NotFound />,
   },
 ];
 
