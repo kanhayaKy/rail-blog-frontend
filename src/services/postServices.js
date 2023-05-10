@@ -1,7 +1,6 @@
 import axios from "axios";
+import { BASE_URL } from "../utils/constants";
 import config from "./config";
-
-const BASE_URL = "http://localhost:3000/api/v1";
 
 export default class PostService {
   static async createPost(postData) {
@@ -9,7 +8,7 @@ export default class PostService {
   }
 
   static async getPosts() {
-    return axios.get("http://localhost:3000/api/v1/posts", config());
+    return axios.get(`${BASE_URL}/posts`, config());
   }
 
   static async updatePost(id, postData) {
@@ -37,6 +36,6 @@ export default class PostService {
   }
 
   static async getPostById(id) {
-    return axios.get(`http://localhost:3000/api/v1/posts/${id}`, config());
+    return axios.get(`${BASE_URL}/posts/${id}`, config());
   }
 }
