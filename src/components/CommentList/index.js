@@ -12,7 +12,7 @@ const CommentList = ({ comments }) => {
       <div className="comments-header">Comments</div>
       {isAuthenticated && <CommmentForm />}
       {comments?.map((comment) => (
-        <Comment comment={comment} />
+        <Comment comment={comment} key={comment.id} />
       ))}
     </div>
   );

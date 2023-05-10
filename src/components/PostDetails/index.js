@@ -15,6 +15,7 @@ import { useState } from "react";
 import PostService from "../../services/postServices";
 import { CircularProgress } from "@mui/material";
 import { deletePost, updatePost } from "../../store/reducers/posts";
+import formatDate from "../../utils/date";
 
 const PostDetails = ({ post }) => {
   const navigate = useNavigate();
@@ -112,11 +113,7 @@ const PostDetails = ({ post }) => {
           />
           <div className="author-info">
             <p>{post?.author?.name}</p>
-            <p className="secondary-text">
-              {new Date(post.created_at).toLocaleString("en-us", {
-                datestyle: "medium",
-              })}
-            </p>
+            <p className="secondary-text">{formatDate(post.created_at)}</p>
           </div>
         </div>
 

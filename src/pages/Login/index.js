@@ -1,8 +1,9 @@
 import { CircularProgress } from "@mui/material";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { authorizeUser } from "../../store/reducers/auth";
+import { authorizeUser, setError } from "../../store/reducers/auth";
 
 import "./style.css";
 const Login = () => {
@@ -12,6 +13,11 @@ const Login = () => {
     (state) => state.auth
   );
 
+  useEffect(() => {
+    dispatch(setError(""));
+    // eslint-disable-next-line
+  }, []);
+
   const {
     register,
     formState: { errors },
@@ -19,7 +25,6 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const args = {
       type: "login",
       user: data,

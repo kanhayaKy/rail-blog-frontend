@@ -18,7 +18,6 @@ const Sidebar = () => {
   const { filter } = useSelector((state) => state.posts);
 
   const handleFilterPosts = (category) => {
-    console.log(category);
     dispatch(sortPosts(category));
   };
 
@@ -60,6 +59,7 @@ const Sidebar = () => {
             <li
               className={`${filter === filterName ? "selected" : ""}`}
               onClick={() => handleFilterPosts(filterName)}
+              key={filterName}
             >
               {postFiltersData[filterName].icon}
               <span>{filterName}</span>
@@ -72,7 +72,7 @@ const Sidebar = () => {
         <h4>Navigation</h4>
         <ul>
           {Object.keys(navigationData).map((navigation) => (
-            <Link to={navigationData[navigation].path} className="link">
+            <Link to={navigationData[navigation].path} className="link" key={navigation}>
               <li>
                 {navigationData[navigation].icon}
                 <span>{navigation}</span>

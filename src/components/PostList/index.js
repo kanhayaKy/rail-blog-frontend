@@ -23,6 +23,8 @@ const PostList = ({ posts, error }) => {
           {posts.map((post) => (
             <Post key={post.id} data={post} />
           ))}
+
+          {posts.length <= 0 && <span>No Posts to display</span>}
         </div>
       )}
     </div>

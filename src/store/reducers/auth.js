@@ -24,25 +24,22 @@ export const authorizeUser = createAsyncThunk(
       return response?.data;
     } catch (error) {
       if (error.response) {
-        return thunkAPI.rejectWithValue(error.response.data.error);
+        return thunkAPI.rejectWithValue(error.response.data.errors);
       }
       return thunkAPI.rejectWithValue("Something went wrong, try again");
     }
   }
 );
 
-export const logoutUser = createAsyncThunk(
-  "auth/logout",
-  async (thunkAPI) => {
-    let response;
-    try {
-      response = await AuthService.logout();
-      return response.data
-    } catch (error) {
-      return thunkAPI.rejectWithValue("Logout unsuccessful, Try again");
-    }
+export const logoutUser = createAsyncThunk("auth/logout", async (thunkAPI) => {
+  let response;
+  try {
+    response = await AuthService.logout();
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Logout unsuccessful, Try again");
   }
-);
+});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -72,7 +69,12 @@ export const authSlice = createSlice({
     },
     [authorizeUser.rejected]: (state, action) => {
       localStorage.removeItem("token");
-      state.error = action.payload;
+      let error = action.payload;
+      if (Array.isArray(error)) {
+        error = error.join(", ");
+      }
+
+      state.error = error;
       state.isLoading = false;
     },
     [logoutUser.fulfilled]: (state, action) => {
@@ -81,9 +83,12 @@ export const authSlice = createSlice({
       state.isAuthenticated = false;
     },
     [logoutUser.rejected]: (state, action) => {
-      state.error = action.payload.response.data.message;
+      localStorage.removeItem("token");
+      state.user = {};
+      state.isAuthenticated = false;
     },
   },
 });
 
 export const authReducer = authSlice.reducer;
+export const { setError } = authSlice.actions;

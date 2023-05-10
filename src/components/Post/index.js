@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PostService from "../../services/postServices";
 import { updatePost } from "../../store/reducers/posts";
+import formatDate from "../../utils/date";
 
 import "./style.css";
 
@@ -56,9 +57,7 @@ const Post = ({ data }) => {
           <div className="author-info">
             <p>{data.author.name}</p>
             <p className="secondary-text">
-              {new Date(data.created_at).toLocaleString("en-us", {
-                datestyle: "medium",
-              })}
+              {formatDate(data.created_at)}
             </p>
           </div>
         </div>

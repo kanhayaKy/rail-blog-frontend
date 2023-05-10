@@ -2,12 +2,17 @@
   display: flex;
   gap: 10px;
 
-  margin: 2rem auto;
+  margin: 1.5rem 0;
+  width: 90%;
+
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
 }
 
 .comment-container img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   object-fit: cover;
   /* border: 1px solid #7c7b7b; */
@@ -15,19 +20,27 @@
 
 .comment-author {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.comment-author-details{
+  display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .comment-author-name {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 .comment-timestamp {
   color: #7c7b7b;
+  font-size: 0.75rem;
 }
 
 .comment-text {
   line-height: 25px;
+  font-size: 16px;
   word-break: break-word;
 }
