@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { authorizeUser, setError } from "../../store/reducers/auth";
 
 import "./style.css";
@@ -164,6 +164,14 @@ const Register = () => {
               )}
             </div>
           </form>
+        </div>
+        <div className="register-footer-text">
+          <p>
+            Already have an account?{" "}
+            <Link className="link" to="/login">
+              Login here
+            </Link>
+          </p>
         </div>
       </div>
     </div>

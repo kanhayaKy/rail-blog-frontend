@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { authorizeUser, setError } from "../../store/reducers/auth";
 
 import "./style.css";
@@ -82,6 +82,15 @@ const Login = () => {
               ) : (
                 <input type="submit" value={"Login"} />
               )}
+            </div>
+
+            <div className="login-footer-text">
+              <p>
+                Don't have an account?{" "}
+                <Link className="link" to="/register">
+                  Sign up here
+                </Link>
+              </p>
             </div>
           </form>
         </div>

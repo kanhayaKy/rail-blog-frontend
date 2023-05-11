@@ -1,0 +1,11 @@
+.profile-page {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.profile {
+  width: 55%;
+  margin-left: calc(17%);
+}

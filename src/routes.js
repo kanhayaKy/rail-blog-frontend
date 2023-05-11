@@ -8,6 +8,7 @@ import CreatePost from "./pages/Post/create";
 import EditPost from "./pages/Post/edit";
 import Auth from "./components/Auth";
 import NotFound from "./pages/404";
+import ProfilePage from "./pages/Profile";
 
 const routes = [
   {
@@ -29,6 +30,16 @@ const routes = [
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/profile",
+    element: <Auth />,
+    children: [
+      {
+        path: "",
+        element: <ProfilePage />,
       },
     ],
   },

@@ -42,7 +42,7 @@ const Sidebar = () => {
     },
     Profile: {
       icon: <PersonOutlined />,
-      path: "/",
+      path: "/profile",
     },
     // Tags: {
     //   icon: <LocalOfferOutlined />,

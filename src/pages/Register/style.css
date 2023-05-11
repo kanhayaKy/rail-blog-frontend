@@ -48,3 +48,13 @@
   margin: 0 ;
 
 }
+
+.register-footer-text{
+  text-align: center;
+  color: #a3a3a3
+}
+
+
+.register-footer-text .link{
+  color: #7451f8;
+}
