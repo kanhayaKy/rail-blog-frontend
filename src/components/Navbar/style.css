@@ -49,3 +49,17 @@
   font-size: 1.6rem;
   color: #7451f8;
 }
+
+
+@media (max-width: 500px) {
+  .navbar{
+    height: 8vh;
+  }
+  .nav-item{
+    font-size: 0.95rem;
+  }
+
+  .brand{
+    font-size: 1.2rem;
+  }
+}

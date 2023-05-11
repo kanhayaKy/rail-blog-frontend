@@ -70,7 +70,7 @@ const PostDetails = ({ post }) => {
   };
 
   return (
-    <>
+    <div className="post-details-wrapper">
       <div className="post-details-buttons">
         <div className="button-group">
           <button onClick={() => navigate("/")}>
@@ -141,7 +141,7 @@ const PostDetails = ({ post }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-.register-form-wrapper{
+.register-form-wrapper {
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -40,21 +40,31 @@
   justify-content: space-between;
   gap: 15px;
 
-  margin: 10px 0
+  margin: 10px 0;
 }
 
-.form-group .form-field{
+.form-group .form-field {
   width: 100%;
-  margin: 0 ;
-
+  margin: 0;
 }
 
-.register-footer-text{
+.register-footer-text {
   text-align: center;
-  color: #a3a3a3
+  color: #a3a3a3;
 }
 
-
-.register-footer-text .link{
+.register-footer-text .link {
   color: #7451f8;
+}
+
+@media (max-width: 500px) {
+  .register-form-container {
+    width: 95%;
+    padding: 10px;
+    margin-top: 60px;
+  }
+
+  .form-group{
+    flex-direction: column;
+  }
 }

@@ -36,3 +36,12 @@
   width: 120px;
   margin: 20px auto;
 }
+
+@media (max-width: 500px) {
+  .profile-image img {
+    height: 60px;
+    width: 60px;
+  }
+
+
+}

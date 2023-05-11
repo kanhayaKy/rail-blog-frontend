@@ -30,3 +30,13 @@ li:hover {
   background-color: rgba(116, 81, 248, 0.42);
   color: #7451f8;
 }
+
+@media (max-width: 500px) {
+  .sidebar {
+    position: relative;
+    display: none;
+  }
+  .menu ul {
+    display: flex;
+  }
+}

@@ -63,11 +63,30 @@
 }
 
 .post-reaction .liked {
-  color: #ff0000
+  color: #ff0000;
 }
 
 .post-reaction .like:hover {
   background-color: rgba(255, 0, 0, 0.18);
   border-radius: 50%;
   color: #ff0000;
+}
+
+@media (max-width: 500px) {
+  .post-container {
+    font-size: 0.9rem;
+  }
+
+  .secondary-text {
+    font-size: 0.7rem;
+  }
+
+  .post-header img {
+    height: 35px;
+    width: 35px;
+  }
+
+  .post-reaction .icon {
+    font-size: 0.9rem;
+  }
 }

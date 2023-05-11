@@ -14,8 +14,9 @@
 
 }
 
-/* @media screen {
-  .main-wrapper {
+@media (max-width: 500px) {
+  .main-wrapper{
     width: 90%;
   }
-} */
+}
+

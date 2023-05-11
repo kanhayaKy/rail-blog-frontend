@@ -71,3 +71,11 @@
   font-size: 0.9rem;
   margin-top: 10px
 }
+
+
+@media (max-width: 500px) {
+
+  .post-form-container {
+    width: 100%;
+  }
+}

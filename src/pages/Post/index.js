@@ -30,7 +30,7 @@ const Post = () => {
   }, []);
 
   return (
-    <div>
+    <div className="post-wrapper">
       {isLoading ? (
         <CircularProgress />
       ) : (
