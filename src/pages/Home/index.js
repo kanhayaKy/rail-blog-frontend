@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CreatePost from "../../components/CreatePost";
 import PostList from "../../components/PostList";
 import Sidebar from "../../components/Sidebar";
 import { fetchPosts } from "../../store/reducers/posts";
@@ -19,6 +20,7 @@ const Home = () => {
     <div className="home">
       <Sidebar />
       <div className="posts">
+        <CreatePost />
         {isLoading ? <div>Loading ...</div> : <PostList posts={posts} />}
       </div>
     </div>

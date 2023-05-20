@@ -11,6 +11,14 @@ export default class PostService {
     return axios.get(`${BASE_URL}/posts`, config());
   }
 
+  static async getUserPosts(username) {
+    return axios.get(`${BASE_URL}/users/${username}/posts`, config());
+  }
+
+  static async getUserDetails(username) {
+    return axios.get(`${BASE_URL}/users/${username}`, config());
+  }
+
   static async updatePost(id, postData) {
     return axios.patch(`${BASE_URL}/posts/${id}`, postData, config());
   }
@@ -35,7 +43,7 @@ export default class PostService {
     );
   }
 
-  static async getPostById(id) {
-    return axios.get(`${BASE_URL}/posts/${id}`, config());
+  static async getPostById({ username, id }) {
+    return axios.get(`${BASE_URL}/users/${username}/posts/${id}`, config());
   }
 }

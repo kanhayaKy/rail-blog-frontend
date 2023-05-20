@@ -72,6 +72,15 @@
   color: #ff0000;
 }
 
+.post-body .author-name-link{
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-body .author-name-link:hover{
+  color: #7451f8;
+}
+
 @media (max-width: 500px) {
   .post-container {
     font-size: 0.9rem;

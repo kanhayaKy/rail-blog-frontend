@@ -25,13 +25,15 @@ export const fetchPosts = createAsyncThunk(
 
 export const getPostById = createAsyncThunk(
   "posts/getPost",
-  async (id, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const response = await PostServices.getPostById(id);
+      const response = await PostServices.getPostById(data);
       return response.data;
     } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error);
+      if (error.response) {
+        return thunkAPI.rejectWithValue(error.response.data.errors);
+      }
+      return thunkAPI.rejectWithValue("Something went wrong, try again");
     }
   }
 );
@@ -119,10 +121,16 @@ const postSlice = createSlice({
       state.isLoading = false;
       state.current_post = action.payload;
     },
-    [getPostById.rejected]: (state) => {
+    [getPostById.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      state.errorMessage = "Error occured while fetching posts";
+
+      let error = action.payload;
+      if (Array.isArray(error)) {
+        error = error.join(", ");
+      }
+
+      state.errorMessage = error;
     },
   },
 });

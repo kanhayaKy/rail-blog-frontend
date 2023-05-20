@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import formatDate from "../../utils/date";
 import "./style.css";
 
 const Comment = ({ comment }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="comment-container">
       <div>
@@ -12,7 +15,12 @@ const Comment = ({ comment }) => {
           />
 
           <div className="comment-author-details">
-            <span className={"comment-author-name"}>
+            <span
+              className={"comment-author-name"}
+              onClick={() => {
+                navigate(`/profile/${comment.author?.username}`);
+              }}
+            >
               {comment.author?.name}
             </span>
 

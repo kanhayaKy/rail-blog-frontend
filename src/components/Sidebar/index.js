@@ -16,6 +16,7 @@ import "./style.css";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.posts);
+  const { user } = useSelector((state) => state.auth);
 
   const handleFilterPosts = (category) => {
     dispatch(sortPosts(category));
@@ -42,7 +43,7 @@ const Sidebar = () => {
     },
     Profile: {
       icon: <PersonOutlined />,
-      path: "/profile",
+      path: `/profile/${user.username}`,
     },
     // Tags: {
     //   icon: <LocalOfferOutlined />,
@@ -72,7 +73,11 @@ const Sidebar = () => {
         <h4>Navigation</h4>
         <ul>
           {Object.keys(navigationData).map((navigation) => (
-            <Link to={navigationData[navigation].path} className="link" key={navigation}>
+            <Link
+              to={navigationData[navigation].path}
+              className="link"
+              key={navigation}
+            >
               <li>
                 {navigationData[navigation].icon}
                 <span>{navigation}</span>

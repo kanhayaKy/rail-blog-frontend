@@ -73,7 +73,7 @@ const PostDetails = ({ post }) => {
     <div className="post-details-wrapper">
       <div className="post-details-buttons">
         <div className="button-group">
-          <button onClick={() => navigate("/")}>
+          <button onClick={() => navigate(-1)}>
             <ArrowBackIcon />
             <span>Back</span>
           </button>

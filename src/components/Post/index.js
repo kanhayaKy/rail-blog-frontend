@@ -3,6 +3,7 @@ import {
   ChatBubbleOutline,
   FavoriteOutlined,
 } from "@mui/icons-material";
+import { Link } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PostService from "../../services/postServices";
@@ -18,7 +19,7 @@ const Post = ({ data }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   const handlePostClick = () => {
-    navigate(`/posts/${data.id}`);
+    navigate(`/${data?.author?.username}/posts/${data.id}`);
   };
 
   const handleLikeClick = async (event) => {
@@ -51,14 +52,18 @@ const Post = ({ data }) => {
       <div className="post-body">
         <div className="post-header">
           <img
-            src={data.author.avatar || "default_profile.png"}
+            src={data.author.avatar || "/default_profile.png"}
             alt="author avatar"
           />
-          <div className="author-info">
-            <p>{data.author.name}</p>
-            <p className="secondary-text">
-              {formatDate(data.created_at)}
-            </p>
+          <div
+            className="author-info"
+            onClick={(event) => {
+              event.stopPropagation();
+              navigate(`/profile/${data.author?.username}`);
+            }}
+          >
+            <p className="author-name-link">{data.author.name}</p>
+            <p className="secondary-text">{formatDate(data.created_at)}</p>
           </div>
         </div>
         <div className="post-content">{data.title}</div>

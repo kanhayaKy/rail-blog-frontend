@@ -25,13 +25,18 @@
   margin-bottom: 5px;
 }
 
-.comment-author-details{
+.comment-author-details {
   display: flex;
   flex-direction: column;
 }
 
 .comment-author-name {
   font-size: 0.85rem;
+}
+
+.comment-author-name:hover {
+  color: #7451f8;
+  cursor: pointer;
 }
 
 .comment-timestamp {

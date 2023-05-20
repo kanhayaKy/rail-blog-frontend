@@ -20,7 +20,7 @@ const routes = [
         element: <Home />,
       },
       {
-        path: "/posts/:id",
+        path: ":username/posts/:id",
         element: <Post />,
       },
       {
@@ -34,7 +34,7 @@ const routes = [
     ],
   },
   {
-    path: "/profile",
+    path: "/profile/:username",
     element: <Auth />,
     children: [
       {

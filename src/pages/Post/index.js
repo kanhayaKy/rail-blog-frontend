@@ -5,14 +5,15 @@ import { useParams } from "react-router-dom";
 import CommentList from "../../components/CommentList";
 import PostDetails from "../../components/PostDetails";
 import { getPostById, setCurrentPost } from "../../store/reducers/posts";
+import NotFound from "../404";
 
 import "./style.css";
 
 const Post = () => {
-  const { id } = useParams();
+  const { id, username } = useParams();
   const dispatch = useDispatch();
 
-  const { posts, current_post, isLoading } = useSelector(
+  const { posts, current_post, isLoading, errorMessage } = useSelector(
     (state) => state.posts
   );
 
@@ -25,19 +26,25 @@ const Post = () => {
     if (index !== -1) {
       dispatch(setCurrentPost(posts[index]));
     } else {
-      dispatch(getPostById(id));
+      dispatch(getPostById({ username, id }));
     }
   }, []);
 
+
+  console.log(current_post, "---------------")
   return (
     <div className="post-wrapper">
+      {!current_post.id && errorMessage && <NotFound />}
+
       {isLoading ? (
         <CircularProgress />
       ) : (
-        <>
-          <PostDetails post={current_post} />
-          <CommentList comments={current_post?.comments} />
-        </>
+        current_post.id && (
+          <>
+            <PostDetails post={current_post} />
+            <CommentList comments={current_post?.comments} />
+          </>
+        )
       )}
     </div>
   );

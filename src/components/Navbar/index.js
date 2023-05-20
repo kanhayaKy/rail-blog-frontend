@@ -25,7 +25,7 @@ const Navbar = () => {
               <li className="nav-item">Create</li>
             </Link>
 
-            <Link className="link" to="/profile">
+            <Link className="link" to={`/profile/${user.username}`}>
               <li className="nav-item user-name">{user.first_name}</li>
             </Link>
 
