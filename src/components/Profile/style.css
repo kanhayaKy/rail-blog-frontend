@@ -27,6 +27,38 @@
 
 .profile-user-details {
   font-size: 20px;
+  width: 100%;
+}
+
+.profile-user-details .flex-row-container {
+  gap: 30px;
+  align-items: center;
+}
+
+.profile-follow-button button{
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: bold;
+
+  background-color: #fff;
+  color: #7451f8;
+
+  border: 1px solid #7451f8;
+  border-radius: 8px;
+}
+
+.profile-follow-button button:hover{
+  background-color: #7451f8;
+  color: #fff;
+}
+
+.profile-follow-details {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px 0;
+  padding: 10px 0;
+
+  border-top: 1px solid #e4e4e4;
 }
 
 .profile-email {
@@ -46,5 +78,7 @@
     width: 60px;
   }
 
-
+  .profile-follow-details {
+    text-align: center;
+  }
 }

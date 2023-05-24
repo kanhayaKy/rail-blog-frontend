@@ -53,6 +53,16 @@ export const authSlice = createSlice({
     setError(state, action) {
       state.error = action.payload;
     },
+
+    followUser(state, action) {
+      state.user?.following?.push(action.payload);
+    },
+
+    unfollowUser(state, action) {
+      state.user.following = state.user.following.filter(
+        (following) => following.username !== action.payload.username
+      );
+    },
   },
 
   extraReducers: {
@@ -91,4 +101,4 @@ export const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { setError } = authSlice.actions;
+export const { setError, followUser, unfollowUser } = authSlice.actions;

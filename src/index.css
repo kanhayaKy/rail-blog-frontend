@@ -13,3 +13,13 @@ body {
   text-decoration: none;
   color: inherit;
 }
+
+.flex-row-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col-container {
+  display: flex;
+  flex-direction: column;
+}

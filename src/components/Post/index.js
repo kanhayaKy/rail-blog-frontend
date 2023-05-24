@@ -32,9 +32,12 @@ const Post = ({ data }) => {
       let response;
 
       if (!data.liked) {
-        response = await PostService.likePost(data.id);
+        response = await PostService.likePost(data?.author.username, data.id);
       } else {
-        response = await PostService.dislikePost(data.id);
+        response = await PostService.dislikePost(
+          data?.author.username,
+          data.id
+        );
       }
       dispatch(updatePost(response?.data));
     } catch (error) {

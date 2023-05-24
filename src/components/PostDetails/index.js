@@ -59,9 +59,9 @@ const PostDetails = ({ post }) => {
       let response;
 
       if (!post.liked) {
-        response = await PostService.likePost(post.id);
+        response = await PostService.likePost(post.author.username, post.id);
       } else {
-        response = await PostService.dislikePost(post.id);
+        response = await PostService.dislikePost(post.author.username, post.id);
       }
       dispatch(updatePost(response?.data));
     } catch (error) {

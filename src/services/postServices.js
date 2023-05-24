@@ -27,12 +27,20 @@ export default class PostService {
     return axios.delete(`${BASE_URL}/posts/${id}`, config());
   }
 
-  static async likePost(id) {
-    return axios.post(`${BASE_URL}/posts/${id}/like`, {}, config());
+  static async likePost(author, id) {
+    return axios.post(
+      `${BASE_URL}/users/${author}/posts/${id}/like`,
+      {},
+      config()
+    );
   }
 
-  static async dislikePost(id) {
-    return axios.post(`${BASE_URL}/posts/${id}/dislike`, {}, config());
+  static async dislikePost(author, id) {
+    return axios.post(
+      `${BASE_URL}/users/${author}/posts/${id}/dislike`,
+      {},
+      config()
+    );
   }
 
   static async addComment(post_id, comment_data) {
