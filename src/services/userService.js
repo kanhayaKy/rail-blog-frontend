@@ -10,4 +10,8 @@ export default class UserService {
   static async unfollowUser(username) {
     return axios.delete(`${BASE_URL}/users/${username}/unfollow`, config());
   }
+
+  static async getUserDetails(username) {
+    return axios.get(`${BASE_URL}/users/${username}`, config());
+  }
 }

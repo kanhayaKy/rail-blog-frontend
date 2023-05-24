@@ -22,32 +22,30 @@ const Profile = ({ user }) => {
   }, []);
 
   const follow = async () => {
+    setIsLoading(true);
+
     try {
-      setIsLoading(true);
       await UserService.followUser(user?.username);
       dispatch(followUser(user));
-      setIsLoading(false);
       setIsFollowing(true);
       user.followers.push(current_user);
-    } catch {
-      setIsLoading(false);
-    }
+    } catch {}
+    setIsLoading(false);
   };
 
   const unfollow = async () => {
+    setIsLoading(true);
+
     try {
-      setIsLoading(true);
       await UserService.unfollowUser(user?.username);
       dispatch(unfollowUser(user.username));
-      setIsLoading(false);
       setIsFollowing(false);
 
       user.followers = user.followers.filter(
         (followed_users) => followed_users.username !== current_user.username
       );
-    } catch {
-      setIsLoading(false);
-    }
+    } catch {}
+    setIsLoading(false);
   };
 
   return (

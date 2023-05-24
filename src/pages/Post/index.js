@@ -31,7 +31,6 @@ const Post = () => {
   }, []);
 
 
-  console.log(current_post, "---------------")
   return (
     <div className="post-wrapper">
       {!current_post.id && errorMessage && <NotFound />}

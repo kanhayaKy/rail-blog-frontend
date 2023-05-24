@@ -111,6 +111,11 @@
   color: #ff0000;
 }
 
+.author-info .author-name-link:hover {
+  color: #7451f8;
+  cursor: pointer;
+}
+
 @media (max-width: 500px) {
   .button-group {
     gap: 10px;
@@ -121,7 +126,7 @@
     font-size: 0.95rem;
   }
 
-  .post-details-wrapper{
+  .post-details-wrapper {
     width: 100%;
     margin: 0 auto;
   }

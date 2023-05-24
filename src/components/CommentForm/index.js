@@ -16,10 +16,13 @@ const CommmentForm = () => {
   const handleCommentSubmit = async () => {
     setIsLoading(true);
     try {
-      const response = await PostService.addComment(current_post.id, {
-        comment,
-      });
-      setIsLoading(false);
+      const response = await PostService.addComment(
+        current_post.author.username,
+        current_post.id,
+        {
+          comment,
+        }
+      );
       setComment("");
       dispatch(addComment(response.data));
     } catch (error) {
@@ -29,9 +32,9 @@ const CommmentForm = () => {
       } else {
         message = "Could not post comment, try again later";
       }
-      setIsLoading(false);
       setError(message);
     }
+    setIsLoading(false);
   };
 
   return (

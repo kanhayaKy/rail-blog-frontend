@@ -29,12 +29,11 @@ const PostDetails = ({ post }) => {
   const handleDeletePost = async () => {
     setIsLoading(true);
     try {
-      const response = await PostService.deletePost(post.id);
+      await PostService.deletePost(post.author.username, post.id);
 
       dispatch(deletePost(post.id));
 
       setTimeout(() => {
-        setIsLoading(false);
         navigate("/");
       }, 500);
     } catch (error) {
@@ -44,9 +43,10 @@ const PostDetails = ({ post }) => {
       } else {
         message = "Could not Delete post, try again later";
       }
-      setIsLoading(false);
       setError(message);
     }
+
+    setIsLoading(false);
   };
 
   const handleLikeClick = async (event) => {
@@ -111,8 +111,14 @@ const PostDetails = ({ post }) => {
             src={post?.author?.avatar ?? "/default_profile.png"}
             alt="author avatar"
           />
-          <div className="author-info">
-            <p>{post?.author?.name}</p>
+          <div
+            className="author-info"
+            onClick={(event) => {
+              event.stopPropagation();
+              navigate(`/profile/${post.author?.username}`);
+            }}
+          >
+            <p className="author-name-link">{post?.author?.name}</p>
             <p className="secondary-text">{formatDate(post.created_at)}</p>
           </div>
         </div>

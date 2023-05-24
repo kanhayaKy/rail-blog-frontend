@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { CircularProgress } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import "./style.css";
@@ -12,6 +12,8 @@ import { ArrowBack } from "@mui/icons-material";
 const PostForm = ({ post }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { username } = useSelector((state) => state.auth.user);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,12 +32,15 @@ const PostForm = ({ post }) => {
         response = await PostService.createPost(data);
         dispatch(addPost(response.data));
       } else if (post && post.id) {
-        response = await PostService.updatePost(post.id, data);
+        response = await PostService.updatePost(
+          post.author.username,
+          post.id,
+          data
+        );
         dispatch(updatePost(response.data));
       }
-      setIsLoading(false);
 
-      setTimeout(() => navigate(`/posts/${response.data.id}`), 500);
+      setTimeout(() => navigate(`/${username}/posts/${response.data.id}`), 250);
     } catch (error) {
       let message;
       if (error.reponse) {
@@ -45,6 +50,7 @@ const PostForm = ({ post }) => {
       }
       setError(message);
     }
+    setIsLoading(false);
   };
 
   return (

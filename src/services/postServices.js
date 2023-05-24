@@ -15,16 +15,12 @@ export default class PostService {
     return axios.get(`${BASE_URL}/users/${username}/posts`, config());
   }
 
-  static async getUserDetails(username) {
-    return axios.get(`${BASE_URL}/users/${username}`, config());
+  static async updatePost(author, id, postData) {
+    return axios.patch(`${BASE_URL}/users/${author}/posts/${id}`, postData, config());
   }
 
-  static async updatePost(id, postData) {
-    return axios.patch(`${BASE_URL}/posts/${id}`, postData, config());
-  }
-
-  static async deletePost(id) {
-    return axios.delete(`${BASE_URL}/posts/${id}`, config());
+  static async deletePost(author, id) {
+    return axios.delete(`${BASE_URL}/users/${author}/posts/${id}`, config());
   }
 
   static async likePost(author, id) {
@@ -43,9 +39,9 @@ export default class PostService {
     );
   }
 
-  static async addComment(post_id, comment_data) {
+  static async addComment(author, post_id, comment_data) {
     return axios.post(
-      `${BASE_URL}/posts/${post_id}/comments`,
+      `${BASE_URL}/users/${author}/posts/${post_id}/comments`,
       comment_data,
       config()
     );

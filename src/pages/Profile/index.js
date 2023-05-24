@@ -6,6 +6,7 @@ import Sidebar from "../../components/Sidebar";
 import PostList from "../../components/PostList";
 import { useEffect, useState } from "react";
 import PostService from "../../services/postServices";
+import UserService from "../../services/userService";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -14,20 +15,21 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getUserAndPosts = async () => {
+    setIsLoading(true);
+
     try {
       const promises = [
-        PostService.getUserDetails(username),
+        UserService.getUserDetails(username),
         PostService.getUserPosts(username),
       ];
 
-      setIsLoading(true);
       const [userResponse, postsResponse] = await Promise.all(promises);
-      setIsLoading(false);
       setPosts(postsResponse.data);
       setUser(userResponse.data);
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
